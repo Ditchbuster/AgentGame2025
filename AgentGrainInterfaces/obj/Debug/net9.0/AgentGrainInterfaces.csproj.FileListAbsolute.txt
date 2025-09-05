@@ -1,0 +1,12 @@
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\bin\Debug\net9.0\AgentGrainInterfaces.deps.json
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\bin\Debug\net9.0\AgentGrainInterfaces.dll
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\bin\Debug\net9.0\AgentGrainInterfaces.pdb
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.csproj.AssemblyReference.cache
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.AssemblyInfoInputs.cache
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.AssemblyInfo.cs
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.dll
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\refint\AgentGrainInterfaces.dll
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.pdb
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\ref\AgentGrainInterfaces.dll
