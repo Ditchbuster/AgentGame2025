@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgentGrains")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+133d05c4ed827d308b757317a790debb41b3c0f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgentGrains")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgentGrains")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

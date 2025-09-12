@@ -10,3 +10,4 @@ C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debu
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\refint\AgentGrainInterfaces.dll
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.pdb
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\ref\AgentGrainInterfaces.dll
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrainInterfaces\obj\Debug\net9.0\AgentGrainInterfaces.sourcelink.json

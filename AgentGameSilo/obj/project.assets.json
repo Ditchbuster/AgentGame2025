@@ -923,6 +923,51 @@
           }
         }
       },
+      "Microsoft.Orleans.Reminders/9.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "8.0.11",
+          "Microsoft.CodeAnalysis.Analyzers": "3.11.0",
+          "Microsoft.CodeAnalysis.Common": "4.5.0",
+          "Microsoft.CodeAnalysis.Workspaces.Common": "4.5.0",
+          "Microsoft.Extensions.Configuration": "8.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "8.0.2",
+          "Microsoft.Extensions.Configuration.Json": "8.0.1",
+          "Microsoft.Extensions.DependencyInjection": "8.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.DependencyModel": "8.0.2",
+          "Microsoft.Extensions.Hosting": "8.0.1",
+          "Microsoft.Extensions.Hosting.Abstractions": "8.0.1",
+          "Microsoft.Extensions.Logging": "8.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.3",
+          "Microsoft.Extensions.Logging.Console": "8.0.1",
+          "Microsoft.Extensions.Logging.Debug": "8.0.1",
+          "Microsoft.Extensions.ObjectPool": "8.0.11",
+          "Microsoft.Extensions.Options": "8.0.2",
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
+          "Microsoft.Orleans.Analyzers": "9.2.1",
+          "Microsoft.Orleans.CodeGenerator": "9.2.1",
+          "Microsoft.Orleans.Core.Abstractions": "9.2.1",
+          "Microsoft.Orleans.Runtime": "9.2.1",
+          "Microsoft.Orleans.Sdk": "9.2.1",
+          "Newtonsoft.Json": "13.0.3",
+          "System.Collections.Immutable": "8.0.0",
+          "System.IO.Hashing": "8.0.0",
+          "System.IO.Pipelines": "8.0.0",
+          "System.Memory.Data": "8.0.1"
+        },
+        "compile": {
+          "lib/net8.0/Orleans.Reminders.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Orleans.Reminders.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Orleans.Runtime/9.2.1": {
         "type": "package",
         "dependencies": {
@@ -1369,6 +1414,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "Microsoft.Orleans.Reminders": "9.2.1",
           "Microsoft.Orleans.Sdk": "9.2.1"
         },
         "compile": {
@@ -1384,6 +1430,7 @@
         "dependencies": {
           "AgentGrainInterfaces": "1.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.8",
+          "Microsoft.Orleans.Reminders": "9.2.1",
           "Microsoft.Orleans.Sdk": "9.2.1"
         },
         "compile": {
@@ -3225,6 +3272,20 @@
         "logo_128.png",
         "microsoft.orleans.persistence.memory.9.2.1.nupkg.sha512",
         "microsoft.orleans.persistence.memory.nuspec"
+      ]
+    },
+    "Microsoft.Orleans.Reminders/9.2.1": {
+      "sha512": "rxBW34RK2cgry7o2s83YeAhFqFLKcon23KrgIRZFokDOLZvQIQJB4owNCUwwKF/5OGuWPRnxnsJvPnL2HdYoJw==",
+      "type": "package",
+      "path": "microsoft.orleans.reminders/9.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/Orleans.Reminders.dll",
+        "lib/net8.0/Orleans.Reminders.xml",
+        "logo_128.png",
+        "microsoft.orleans.reminders.9.2.1.nupkg.sha512",
+        "microsoft.orleans.reminders.nuspec"
       ]
     },
     "Microsoft.Orleans.Runtime/9.2.1": {

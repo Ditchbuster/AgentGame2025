@@ -1,14 +1,8 @@
 ﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-IHostBuilder builder = Host.CreateDefaultBuilder(args)
-    .UseOrleans(silo =>
+await Host.CreateDefaultBuilder(args)
+    .UseOrleans(siloBuilder =>
     {
-        silo.UseLocalhostClustering()
-            .ConfigureLogging(logging => logging.AddConsole());
+        siloBuilder.UseLocalhostClustering();
     })
-    .UseConsoleLifetime();
-
-using IHost host = builder.Build();
-
-await host.RunAsync();
+    .RunConsoleAsync();

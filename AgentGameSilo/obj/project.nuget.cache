@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nKkmyUaSQl8=",
+  "dgSpecHash": "Ul4FEwIpUwI=",
   "success": true,
   "projectFilePath": "C:\\Users\\Chris\\Documents\\Programming\\AgentGame2025\\AgentGameSilo\\AgentGameSilo.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\Chris\\.nuget\\packages\\microsoft.orleans.core\\9.2.1\\microsoft.orleans.core.9.2.1.nupkg.sha512",
     "C:\\Users\\Chris\\.nuget\\packages\\microsoft.orleans.core.abstractions\\9.2.1\\microsoft.orleans.core.abstractions.9.2.1.nupkg.sha512",
     "C:\\Users\\Chris\\.nuget\\packages\\microsoft.orleans.persistence.memory\\9.2.1\\microsoft.orleans.persistence.memory.9.2.1.nupkg.sha512",
+    "C:\\Users\\Chris\\.nuget\\packages\\microsoft.orleans.reminders\\9.2.1\\microsoft.orleans.reminders.9.2.1.nupkg.sha512",
     "C:\\Users\\Chris\\.nuget\\packages\\microsoft.orleans.runtime\\9.2.1\\microsoft.orleans.runtime.9.2.1.nupkg.sha512",
     "C:\\Users\\Chris\\.nuget\\packages\\microsoft.orleans.sdk\\9.2.1\\microsoft.orleans.sdk.9.2.1.nupkg.sha512",
     "C:\\Users\\Chris\\.nuget\\packages\\microsoft.orleans.serialization\\9.2.1\\microsoft.orleans.serialization.9.2.1.nupkg.sha512",

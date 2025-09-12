@@ -13,3 +13,4 @@ C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrains\obj\Debug\net9.0\
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrains\obj\Debug\net9.0\refint\AgentGrains.dll
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrains\obj\Debug\net9.0\AgentGrains.pdb
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrains\obj\Debug\net9.0\ref\AgentGrains.dll
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGrains\obj\Debug\net9.0\AgentGrains.sourcelink.json

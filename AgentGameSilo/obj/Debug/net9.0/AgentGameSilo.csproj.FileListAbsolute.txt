@@ -96,3 +96,5 @@ C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGameSilo\obj\Debug\net9.
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGameSilo\obj\Debug\net9.0\AgentGameSilo.pdb
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGameSilo\obj\Debug\net9.0\AgentGameSilo.genruntimeconfig.cache
 C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGameSilo\obj\Debug\net9.0\ref\AgentGameSilo.dll
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGameSilo\obj\Debug\net9.0\AgentGameSilo.sourcelink.json
+C:\Users\Chris\Documents\Programming\AgentGame2025\AgentGameSilo\bin\Debug\net9.0\Orleans.Reminders.dll
