@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgentGameSilo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+133d05c4ed827d308b757317a790debb41b3c0f1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+364fcc5af42bb8dcdd953d55590825a25042c50e")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgentGameSilo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgentGameSilo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

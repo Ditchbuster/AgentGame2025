@@ -32,7 +32,31 @@ if (AnsiConsole.Confirm("Connect?"))
     AnsiConsole.WriteLine(await user.DebugDump());
 
     string choice = Menu();
-
+    while (choice != "Exit")
+    {
+        switch (choice)
+        {
+            case "Task Selection":
+                var tasks = await user.AvailibleTasks();
+                Rule rule = new Rule("[red]Tasks[/]");
+                rule.Justification = Justify.Left;
+                AnsiConsole.Write(rule);
+                string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(tasks));
+                AnsiConsole.WriteLine(await user.StartTask(sel));
+                break;
+            case "Task Status":
+                AnsiConsole.WriteLine("Not implemented");
+                break;
+            case "Agent Info":
+                Agent agent = await user.GetAgentInfo();
+                AnsiConsole.WriteLine($"Agent ID: {agent.Id}, Name: {agent.Name}, xp: {agent.xp}");
+                break;
+            default:
+                AnsiConsole.WriteLine("Unknown choice");
+                break;
+        }
+        choice = Menu();
+    }
     AnsiConsole.Confirm("Exiting...");
 
     await host.StopAsync();
@@ -44,6 +68,6 @@ static string Menu()
     Rule rule = new Rule("[red]Menu[/]");
     rule.Justification = Justify.Left;
     AnsiConsole.Write(rule);
-    string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(new[] { "Task List", "Task Status", "Agent Info", "Exit" }));
+    string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(new[] { "Task Selection", "Task Status", "Agent Info", "Exit" }));
     return sel;   
 }

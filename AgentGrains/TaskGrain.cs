@@ -1,18 +1,21 @@
 using GrainInterfaces;
 using Microsoft.Extensions.Logging;
 
-namespace Grains;
+namespace AgentGrains;
 
 public class TaskGrain : Grain, ITask, IRemindable
 {
     private readonly ILogger _logger;
 
     private Agent _agent;
-    private bool running;
+    private bool _running;
+    private int _reminderPulses;
 
-    public TaskGrain(ILogger<HelloGrain> logger)
+    public TaskGrain(ILogger<TaskGrain> logger)
     {
         _logger = logger;
+        _running = false;
+        _reminderPulses = 0;
         _agent = new("test", "Test Name", 0);
     }
     public ValueTask<string> DebugDump()
@@ -25,9 +28,19 @@ public class TaskGrain : Grain, ITask, IRemindable
         return ValueTask.FromResult(new List<string> { "testTaskId" });
     }
 
-    public ValueTask<bool> StartTask(string agentId)
+    public async ValueTask<bool> StartTask(string agentId) //TODO: update to accept agent record
     {
-        throw new NotImplementedException();
+        _logger.LogInformation("Starting task for agent {AgentId}", agentId);
+        if (!_running)
+        {
+            await this.RegisterOrUpdateReminder(
+            reminderName: this.GetPrimaryKeyString(),
+            dueTime: TimeSpan.Zero,
+            period: TimeSpan.FromMinutes(1));
+            _running = true;
+            _reminderPulses = 10;
+        }
+        return true;
 
     }
 
@@ -35,9 +48,24 @@ public class TaskGrain : Grain, ITask, IRemindable
     {
         throw new NotImplementedException();
     }
-    Task IRemindable.ReceiveReminder(string reminderName, TickStatus status)
+    async Task IRemindable.ReceiveReminder(string reminderName, TickStatus status)
     {
-        Console.WriteLine("Thanks for reminding me-- I almost forgot!");
-        return Task.CompletedTask;
+        _reminderPulses--;
+        Console.WriteLine($"Thanks for reminding me-- I almost forgot! {_reminderPulses}");
+        if (_reminderPulses <= 0)
+        {
+            _logger.LogInformation("Task complete, unregistering reminder");
+            var reminder =  await this.GetReminder(this.GetPrimaryKeyString());
+            if (reminder != null)
+            {
+                await this.UnregisterReminder(reminder);
+                _logger.LogInformation("unregistered reminder");
+            } else
+            {
+                _logger.LogWarning($"reminder {this.GetPrimaryKey()} was null");
+            }
+            _running = false;
+        }
+        return;
     }
 }

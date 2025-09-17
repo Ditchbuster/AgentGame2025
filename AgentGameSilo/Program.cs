@@ -3,6 +3,7 @@
 await Host.CreateDefaultBuilder(args)
     .UseOrleans(siloBuilder =>
     {
-        siloBuilder.UseLocalhostClustering();
+        siloBuilder.UseLocalhostClustering()
+        .UseInMemoryReminderService();
     })
     .RunConsoleAsync();

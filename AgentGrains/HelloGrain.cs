@@ -1,7 +1,7 @@
 using GrainInterfaces;
 using Microsoft.Extensions.Logging;
 
-namespace Grains;
+namespace AgentGrains;
 
 public class HelloGrain : Grain, IHello
 {
