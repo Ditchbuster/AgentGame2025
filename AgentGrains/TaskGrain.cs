@@ -7,7 +7,7 @@ public class TaskGrain : Grain, ITask, IRemindable
 {
     private readonly ILogger _logger;
 
-    private Agent _agent;
+    private string _agentId;
     private bool _running;
     private int _reminderPulses;
 
@@ -16,7 +16,7 @@ public class TaskGrain : Grain, ITask, IRemindable
         _logger = logger;
         _running = false;
         _reminderPulses = 0;
-        _agent = new("test", "Test Name", 0);
+        _agentId = string.Empty;
     }
     public ValueTask<string> DebugDump()
     {
@@ -37,8 +37,9 @@ public class TaskGrain : Grain, ITask, IRemindable
             reminderName: this.GetPrimaryKeyString(),
             dueTime: TimeSpan.Zero,
             period: TimeSpan.FromMinutes(1));
+            _agentId = agentId;
             _running = true;
-            _reminderPulses = 10;
+            _reminderPulses = 2;
         }
         return true;
 
@@ -59,6 +60,7 @@ public class TaskGrain : Grain, ITask, IRemindable
             if (reminder != null)
             {
                 await this.UnregisterReminder(reminder);
+                await GrainFactory.GetGrain<IAgent>(this._agentId).AddXp(10);
                 _logger.LogInformation("unregistered reminder");
             } else
             {

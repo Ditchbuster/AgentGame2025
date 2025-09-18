@@ -7,27 +7,38 @@ public class AgentGrain : Grain, IAgent
 {
     private readonly ILogger _logger;
 
-    private Agent _agent;
-    private int _xp;
-    public AgentGrain(ILogger<AgentGrain> logger)
+    private readonly IPersistentState<AgentState> _AgentState;
+    public AgentGrain(ILogger<AgentGrain> logger, [PersistentState("agentState")] IPersistentState<AgentState> agentState)
     {
         _logger = logger;
-        _agent = new("test", "Test Name", 0);
+        _AgentState = agentState;
+    }
+    public override Task OnActivateAsync(CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrEmpty(_AgentState.State.AgentId))
+        {
+            _AgentState.State.AgentId = this.GetPrimaryKeyString();
+            _AgentState.State.Name = "TestAgent";
+            _AgentState.State.Xp = 0;
+            _AgentState.WriteStateAsync(cancellationToken);
+        }
+        return base.OnActivateAsync(cancellationToken);
     }
     public ValueTask<string> DebugDump()
     {
         throw new NotImplementedException();
     }
 
-    public ValueTask<Agent> AgentInfo()
+    public ValueTask<AgentState> AgentInfo()
     {
-        return ValueTask.FromResult(_agent);
+        return ValueTask.FromResult(_AgentState.State);
     }
 
     public ValueTask<int> AddXp(int amount)
     {
-        _xp += amount;
-        return ValueTask.FromResult(_agent.xp);
+        _AgentState.State.Xp += amount;
+        _AgentState.WriteStateAsync();
+        return ValueTask.FromResult(_AgentState.State.Xp);
     }
 
 }

@@ -6,5 +6,5 @@ public interface IUser : IGrainWithStringKey
     ValueTask<string> DebugDump();
     ValueTask<List<string>> AvailibleTasks();
     ValueTask<string> StartTask(string taskId);
-    ValueTask<Agent> GetAgentInfo();
+    ValueTask<AgentState> GetAgentInfo();
 }

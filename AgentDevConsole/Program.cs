@@ -38,18 +38,20 @@ if (AnsiConsole.Confirm("Connect?"))
         {
             case "Task Selection":
                 var tasks = await user.AvailibleTasks();
-                Rule rule = new Rule("[red]Tasks[/]");
+                Rule rule = new Rule("[green]Tasks[/]");
                 rule.Justification = Justify.Left;
                 AnsiConsole.Write(rule);
-                string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(tasks));
-                AnsiConsole.WriteLine(await user.StartTask(sel));
+                string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(tasks).AddChoices(["Cancel"]));
+                if (sel == "Cancel") break;
+                string res = await user.StartTask(sel);
+                AnsiConsole.WriteLine(res);
                 break;
             case "Task Status":
                 AnsiConsole.WriteLine("Not implemented");
                 break;
             case "Agent Info":
-                Agent agent = await user.GetAgentInfo();
-                AnsiConsole.WriteLine($"Agent ID: {agent.Id}, Name: {agent.Name}, xp: {agent.xp}");
+                AgentState agent = await user.GetAgentInfo();
+                AnsiConsole.WriteLine($"Agent ID: {agent.AgentId}, Name: {agent.Name}, xp: {agent.Xp}");
                 break;
             default:
                 AnsiConsole.WriteLine("Unknown choice");
@@ -68,6 +70,6 @@ static string Menu()
     Rule rule = new Rule("[red]Menu[/]");
     rule.Justification = Justify.Left;
     AnsiConsole.Write(rule);
-    string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(new[] { "Task Selection", "Task Status", "Agent Info", "Exit" }));
+    string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(["Task Selection", "Task Status", "Agent Info", "Exit"]));
     return sel;   
 }

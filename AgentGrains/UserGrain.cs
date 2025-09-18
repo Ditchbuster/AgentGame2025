@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using GrainInterfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -7,18 +8,29 @@ namespace AgentGrains;
 public class UserGrain : Grain, IUser
 {
     private readonly ILogger _logger;
+    private readonly IPersistentState<UserState> _userState;
 
-    private Agent _agent;
-
-    public UserGrain(ILogger<UserGrain> logger)
+    public UserGrain(ILogger<UserGrain> logger, [PersistentState("userState")] IPersistentState<UserState> userState)
     {
         _logger = logger;
-        _agent = new("test", "Test Name", 0);
+        _userState = userState;
+
     }
-    public ValueTask<string> DebugDump()
+
+    public override Task OnActivateAsync(CancellationToken cancellationToken)
     {
-        return ValueTask.FromResult(this.GetPrimaryKey().ToString());
+        if (string.IsNullOrEmpty(_userState.State.AgentId))
+        {
+            _userState.State.AgentId = this.GetPrimaryKeyString();
+            _userState.WriteStateAsync(cancellationToken);
+        }
+        return base.OnActivateAsync(cancellationToken);
     }
+    
+    public ValueTask<string> DebugDump()
+{
+    return ValueTask.FromResult(this.GetPrimaryKey().ToString());
+}
 
     public ValueTask<List<string>> AvailibleTasks()
     {
@@ -27,12 +39,12 @@ public class UserGrain : Grain, IUser
     public async ValueTask<string> StartTask(string taskId)
     {
         _logger.LogInformation("Starting task {TaskId}", taskId);
-        bool ret = await GrainFactory.GetGrain<ITask>(taskId).StartTask(_agent.Id);
+        bool ret = await GrainFactory.GetGrain<ITask>(taskId).StartTask(_userState.State.AgentId);
         return $"Started task {taskId}: {ret}";
     }
-    public ValueTask<Agent> GetAgentInfo()
+    public ValueTask<AgentState> GetAgentInfo()
     {
-        return ValueTask.FromResult(_agent);
+        return GrainFactory.GetGrain<IAgent>(_userState.State.AgentId).AgentInfo();
     }
 
     ValueTask<string> IUser.SayHello(string greeting)
