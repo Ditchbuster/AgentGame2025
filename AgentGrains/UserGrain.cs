@@ -1,21 +1,14 @@
-using System.ComponentModel;
 using GrainInterfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+
 namespace AgentGrains;
 
-public class UserGrain : Grain, IUser
+public class UserGrain(ILogger<UserGrain> logger, [PersistentState("userState")] IPersistentState<UserState> userState) : Grain, IUser
 {
-    private readonly ILogger _logger;
-    private readonly IPersistentState<UserState> _userState;
-
-    public UserGrain(ILogger<UserGrain> logger, [PersistentState("userState")] IPersistentState<UserState> userState)
-    {
-        _logger = logger;
-        _userState = userState;
-
-    }
+    private readonly ILogger _logger = logger;
+    private readonly IPersistentState<UserState> _userState = userState;
 
     public override Task OnActivateAsync(CancellationToken cancellationToken)
     {

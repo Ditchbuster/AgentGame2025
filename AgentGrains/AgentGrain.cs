@@ -7,20 +7,22 @@ public class AgentGrain : Grain, IAgent
 {
     private readonly ILogger _logger;
 
-    private readonly IPersistentState<AgentState> _AgentState;
-    public AgentGrain(ILogger<AgentGrain> logger, [PersistentState("agentState")] IPersistentState<AgentState> agentState)
+    private readonly IPersistentState<AgentState> _agentState;
+    private readonly IPersistentState<InventoryState> _inventoryState;
+    public AgentGrain(ILogger<AgentGrain> logger, [PersistentState("agentState")] IPersistentState<AgentState> agentState, [PersistentState("inventoryState")] IPersistentState<InventoryState> inventoryState)
     {
         _logger = logger;
-        _AgentState = agentState;
+        _agentState = agentState;
+        _inventoryState = inventoryState;
     }
     public override Task OnActivateAsync(CancellationToken cancellationToken)
     {
-        if (string.IsNullOrEmpty(_AgentState.State.AgentId))
+        if (string.IsNullOrEmpty(_agentState.State.AgentId))
         {
-            _AgentState.State.AgentId = this.GetPrimaryKeyString();
-            _AgentState.State.Name = "TestAgent";
-            _AgentState.State.Xp = 0;
-            _AgentState.WriteStateAsync(cancellationToken);
+            _agentState.State.AgentId = this.GetPrimaryKeyString();
+            _agentState.State.Name = "TestAgent";
+            _agentState.State.Xp = 0;
+            _agentState.WriteStateAsync(cancellationToken);
         }
         return base.OnActivateAsync(cancellationToken);
     }
@@ -31,14 +33,27 @@ public class AgentGrain : Grain, IAgent
 
     public ValueTask<AgentState> AgentInfo()
     {
-        return ValueTask.FromResult(_AgentState.State);
+        return ValueTask.FromResult(_agentState.State);
     }
 
     public ValueTask<int> AddXp(int amount)
     {
-        _AgentState.State.Xp += amount;
-        _AgentState.WriteStateAsync();
-        return ValueTask.FromResult(_AgentState.State.Xp);
+        _agentState.State.Xp += amount;
+        _agentState.WriteStateAsync();
+        return ValueTask.FromResult(_agentState.State.Xp);
     }
 
+    public ValueTask<int> AddItem(string itemId, int amount)
+    {
+        if (_inventoryState.State.Items.ContainsKey(itemId))
+        {
+            _inventoryState.State.Items[itemId] += amount;
+        }
+        else
+        {
+            _inventoryState.State.Items[itemId] = amount;
+        }
+        _inventoryState.WriteStateAsync();
+        return ValueTask.FromResult(_inventoryState.State.Items[itemId]);
+    }
 }

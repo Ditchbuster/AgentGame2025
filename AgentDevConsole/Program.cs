@@ -53,6 +53,11 @@ if (AnsiConsole.Confirm("Connect?"))
                 AgentState agent = await user.GetAgentInfo();
                 AnsiConsole.WriteLine($"Agent ID: {agent.AgentId}, Name: {agent.Name}, xp: {agent.Xp}");
                 break;
+            case "Test Location":
+                ILocation loc = client.GetGrain<ILocation>("TestLocationId");
+                var locinfo = await loc.LocationInfo();
+                AnsiConsole.WriteLine($"Name: {locinfo.Name}");
+                break;
             default:
                 AnsiConsole.WriteLine("Unknown choice");
                 break;
@@ -70,6 +75,6 @@ static string Menu()
     Rule rule = new Rule("[red]Menu[/]");
     rule.Justification = Justify.Left;
     AnsiConsole.Write(rule);
-    string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(["Task Selection", "Task Status", "Agent Info", "Exit"]));
+    string sel = AnsiConsole.Prompt(new SelectionPrompt<string>().PageSize(20).AddChoices(["Task Selection", "Task Status", "Agent Info","Test Location", "Exit"]));
     return sel;   
 }

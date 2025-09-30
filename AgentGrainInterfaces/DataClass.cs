@@ -18,3 +18,18 @@ public record class UserState
     [Id(0)]
     public string AgentId { get; set; } = string.Empty;
 }
+[GenerateSerializer]
+[Alias("GrainInterfaces.InventoryState")]
+public record class InventoryState
+{
+    [Id(0)]
+    public Dictionary<string, int> Items { get; set; } = [];
+}
+
+[GenerateSerializer]
+[Alias("GrainInterfaces.LocationState")]
+public record class LocationState
+{
+    [Id(0)]
+    public string Name { get; set; } = string.Empty;
+}

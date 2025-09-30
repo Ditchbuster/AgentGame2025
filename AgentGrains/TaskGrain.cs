@@ -60,7 +60,9 @@ public class TaskGrain : Grain, ITask, IRemindable
             if (reminder != null)
             {
                 await this.UnregisterReminder(reminder);
-                await GrainFactory.GetGrain<IAgent>(this._agentId).AddXp(10);
+                IAgent agent = GrainFactory.GetGrain<IAgent>(this._agentId);
+                await agent.AddXp(10);
+                await agent.AddItem("credits", 10);
                 _logger.LogInformation("unregistered reminder");
             } else
             {
