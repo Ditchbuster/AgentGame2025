@@ -8,6 +8,7 @@ public class TaskGrain : Grain, ITask, IRemindable
     private readonly ILogger _logger;
 
     private string _agentId;
+    private string _locationId;
     private bool _running;
     private int _reminderPulses;
 
@@ -17,13 +18,14 @@ public class TaskGrain : Grain, ITask, IRemindable
         _running = false;
         _reminderPulses = 0;
         _agentId = string.Empty;
+        _locationId = string.Empty;
     }
     public ValueTask<string> DebugDump()
     {
         throw new NotImplementedException();
     }
 
-    public ValueTask<List<string>> getAvailibleTasks()
+    public ValueTask<List<string>> getAvailibleTasks() // TODO move to location grain
     {
         return ValueTask.FromResult(new List<string> { "testTaskId" });
     }
@@ -61,8 +63,10 @@ public class TaskGrain : Grain, ITask, IRemindable
             {
                 await this.UnregisterReminder(reminder);
                 IAgent agent = GrainFactory.GetGrain<IAgent>(this._agentId);
+                ILocation location = GrainFactory.GetGrain<ILocation>(this._locationId);
                 await agent.AddXp(10);
                 await agent.AddItem("credits", 10);
+                await location.AddItem("wood", 100);
                 _logger.LogInformation("unregistered reminder");
             } else
             {

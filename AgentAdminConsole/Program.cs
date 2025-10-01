@@ -46,7 +46,7 @@ if (AnsiConsole.Confirm("Connect?"))
 
 static string GenerateWorld()
 {
-    return "Not implemented";
+    throw new NotImplementedException();    
 }
 
 static string Menu()
